@@ -56,6 +56,10 @@ section:first-of-type > * {
 }
 ul{
   margin: 0 auto;
+  width: 550px;
+}
+li {
+  font-size: 20px;
 }
 footer{
   height: 20px;
