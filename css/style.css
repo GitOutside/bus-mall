@@ -1,24 +1,63 @@
 *{box-sizing: border-box;}
 
+
 h1 {
+  width: 300px;
   font-size: 32px;
-  text-align: center;
+  margin: 30px auto;
 }
 h2 {
+  border: solid red 2px;
   font-size: 25px;
   text-align: center;
 }
-section figure {
+ figure {
+   border: solid red 2px;
   width: 25%;
+  margin: 20px;
 }
-
+div{
+  overflow: hidden;
+  width: 100%;
+}
+section:first-of-type {
+position: relative;
+overflow: hidden;
+}
+section:first-of-type > * {
+  float: left;
+}
+section:first-of-type > p{
+  font-size: 20px;
+  margin: 0 20px;
+  position: absolute;
+  top: 45%;
+  right: 67%;
+  transform: translateY(-50%);
+}
+p:nth-of-type(2n){
+font-size: 20px;
+margin: 0 20px;
+position: absolute;
+top: 45%;
+right: 30%;
+transform: translateY(-60%);
+}
 img {
   width: 100%;
 }
 
-figure {
+section:first-of-type :first-child{
+  margin-right: 70px;
+}
+
+section:first-of-type > * {
   float: left;
 }
- article{
-   clear:left;
- }
+ul{
+  margin: 0 auto;
+}
+footer{
+  height: 20px;
+  border: solid red 2px;
+}
