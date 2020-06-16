@@ -3,7 +3,7 @@
 
 var productCollection = [];
 var totalClicks = 0;
-var maxClicks = 0;
+var maxClicks = 25;
 
 function Product(imageSource, caption){
   this.clicked = 0;
@@ -21,82 +21,84 @@ new Product('img/breakfast.jpg', 'Champion of Breakfasts');
 new Product('img/bathroom.jpg', 'Bathroom iPad Caddy');
 new Product('img/bubblegum.jpg', 'Meatball Bubblegum');
 new Product('img/chair.jpg', 'Domed-seat Chair');
-new Product('img/cthulhu.jpg', 'Creature Action Figure');
+new Product('img/cthulhu.jpg', 'Cthulhu Action Figure');
 new Product('img/dog-duck.jpg', 'Dog Duck-Lips');
-new Product('img/dragon.jpg', 'Creature Action Figure')
+new Product('img/dragon.jpg', 'Canned Dragon Meat');
 new Product('img/pen.jpg', 'Two-In-One Pen/Utensil');
 new Product('img/pet-sweep.jpg', 'Dog Dusters');
-new Product('img/scissors', 'Pizza Scissors-Slicer');
+new Product('img/scissors.jpg', 'Pizza Scissors-Slicer');
 new Product('img/shark.jpg', 'Shark Sleeping Bag');
-new Product('img/sweep.jpg', 'Baby Duster');
+new Product('img/sweep.png', 'Baby Duster');
 new Product('img/tauntaun.jpg', 'TaunTaun Sleeping Bag');
-new Product('img/uniorn.jpg' , 'Unicorn Meat');
-new Product('img/usb.jpg', 'Sea-Monster Thumbdrive');
+new Product('img/unicorn.jpg' , 'Unicorn Meat');
+new Product('img/usb.gif', 'Sea-Monster Thumbdrive');
 new Product('img/water-can.jpg', 'Self-Watering Can');
 new Product('img/wine-glass.jpg', 'Tricky Sip Wineglass');
 
 //==============EVENT LISTENER======================
-//this works
 var productImageSection = document.getElementById('product-images');
 productImageSection.addEventListener('click', handleClickOnAProduct);
-function handleClickOnAProduct(event){
+function handleClickOnAProduct(event){//delaring itself. The parameter
   if(event.target.tagName === 'IMG'){
     totalClicks++;
-    console.log(totalClicks);
+    var targetSrc = event.target.getAttribute('src');
+    for(var i = 0; i < productCollection.length; i++)
+      if(productCollection[i].imageSrc === targetSrc){
+        productCollection[i].clicked++;
+      }
     if(totalClicks === maxClicks){
       productImageSection.removeEventListener('click', handleClickOnAProduct);
+      var putInList = document.getElementById('data');
+      for(i =0; i < productCollection.length; i++){
+        var listItem = document.createElement('li');
+        listItem.textContent = (
+          productCollection[i].imageCap + ':' + ' Clicked : ' + productCollection[i].clicked + ' Shown: ' + productCollection[i].shown
+        );
+        putInList.appendChild(listItem);
+      }
     }
+    rerenderRandoImages();
+  }
+  else {
+    alert('Click on an image please.');
   }
 
+}
 
-  
-  var targetSrc = event.target.getAttribute('src');
-  for(var i = 0; i < productCollection.length; i++){
-    if (productCollection[i].imageSrc === targetSrc){
-      console.log('it was' , productCollection[i]);
-      productCollection[i].clicked++;
-      console.log(productCollection[i]);
-      debugger;
-    } else {
-      alert('Click an image please');
-    }
+//============RENDER IMAGES==========================
+function rerenderRandoImages(){
+  var firstRandom = pickRando(0, productCollection.length);
+  var secondRandom = pickRando(0, productCollection.length);
+  var thirdRandom = pickRando(0, productCollection.length);
+  while(secondRandom === firstRandom){
+    secondRandom = pickRando(0, productCollection.length);
   }
-//   function rerenderRandoImages(){
-//     var firstRandom = pickRandom(0, productCollection.length);
-//     console.log('first new', productCollection[firstRandom]);
+  while(thirdRandom === secondRandom || thirdRandom === firstRandom){
+    thirdRandom = pickRando(0, productCollection.length);
+  }
+  var leftImage = document.getElementById('left-image');
+  var leftText = document.getElementById('left-text');
+  var middleImage = document.getElementById('middle-image');
+  var middleText = document.getElementById('middle-text');
+  var rightImage = document.getElementById('right-image');
+  var rightText = document.getElementById('right-text');
 
-//     var secondRandom = pickRandom(0, productCollection.length);
-//     console.log('second new', productCollection[secondRandom]);
-//     while(secondRandom === firstRandom){
-//       secondRandom = pickRandom(0, productCollection.length);
-//       console.log('second new (reroll)', productCollection[secondRandom]);
-//     }
-//     var thirdRandom = pickRandom(0, productCollection.length);
-//     console.log('third new', productCollection[thirdRandom]);
-//     while(thirdRandom === secondRandom){
-//       thirdRandom = pickRandom(0, productCollection[thirdRandom]);
-//     }
-//   }
-// }
-// var leftImage = document.getElementById('left-image');
-// var leftText = document.getElementById('left-text');
-// var middleImage = document.getElementById('middle-image');
-// var middleText = document.getElementById('middle-text');
-// var rightImage = document.getElementById('right-image');
-// var rightText = document.getElementById('right-text');
+  var firstProduct = productCollection[firstRandom].imageSrc;
+  leftImage.src = firstProduct;
+  leftText.textContent = productCollection[firstRandom].imageCap;
+  productCollection[firstRandom].shown++;
 
-// leftImage.src = productCollection[firstRandom].imageSrc;
-// leftText.textContent = productCollection[firstRandom].imageCap;
-// productCollection[firstRandom].shown++;
+  var secondProduct = productCollection[secondRandom].imageSrc;
+  middleImage.src = secondProduct;
+  middleText.textContent = productCollection[secondRandom].imageCap;
+  productCollection[secondRandom].shown++;
 
-// var secondProduct = productCollection[secondRandom];
-// middleImage.src = productCollection[secondRandom].imageSrc;
-// productCollection[secondRandom].shown++;
-
-// var thirdProduct = productCollection[thirdProduct];
-// leftText.src = productCollection[secondRandom].imageSrc;
-// productCollection[thirdRandom].shown++;
-
-// function pickRandom(min, max){
-//   return Math.floor(Math.random() * (max - min) + min);
-// }
+  var thirdProduct = productCollection[thirdRandom].imageSrc;
+  rightImage.src = thirdProduct;
+  rightText.textContent = productCollection[thirdRandom].imageCap;
+  productCollection[thirdRandom].shown++;
+}
+//==============RENDER IN LIST=======================
+function pickRando(min, max){
+  return Math.floor(Math.random() * (max - min) + min);
+}
