@@ -35,6 +35,16 @@ new Product('img/usb.gif', 'Sea-Monster Thumbdrive');
 new Product('img/water-can.jpg', 'Self-Watering Can');
 new Product('img/wine-glass.jpg', 'Tricky Sip Wineglass');
 
+//User story: prevent total votes to disapper on refresh
+//1. use getItem to get the products from local storage
+var stringyProductsStored = localStorage.getItem('storedProducts');
+var productsFromStorage = JSON.parse(stringyProductsStored);
+console.log('products from local storage', stringyProductsStored);
+
+if(productsFromStorage){
+  productCollection = productsFromStorage;
+}
+
 //==============EVENT LISTENER======================
 var productImageSection = document.getElementById('product-images');
 productImageSection.addEventListener('click', handleClickOnAProduct);
@@ -48,6 +58,11 @@ function handleClickOnAProduct(event){
       }
     if(totalClicks === maxClicks){
       productImageSection.removeEventListener('click', handleClickOnAProduct);
+
+      //Put products into local storage. After max clicks
+      var stringyProducts = JSON.stringify(productCollection);
+      //console.log('stringy array', stringyProducts);
+      localStorage.setItem('storedProducts', stringyProducts);
       var putInList = document.getElementById('data');
       for(i =0; i < productCollection.length; i++){
         var listItem = document.createElement('li');
@@ -73,7 +88,7 @@ function rerenderRandoImages(){
   var secondRandom = pickRando(0, productCollection.length);
   var thirdRandom = pickRando(0, productCollection.length);
 
-  while(secondRandom === firstRandom || secondRandom === thirdRandom || secondRandom === thirdRandom){
+  while(secondRandom === firstRandom || secondRandom === thirdRandom || firstRandom === thirdRandom){
     firstRandom = pickRando(0, productCollection.length);
     secondRandom = pickRando(0, productCollection.length);
     thirdRandom = pickRando(0, productCollection.length);
