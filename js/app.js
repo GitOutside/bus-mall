@@ -38,7 +38,7 @@ new Product('img/wine-glass.jpg', 'Tricky Sip Wineglass');
 //==============EVENT LISTENER======================
 var productImageSection = document.getElementById('product-images');
 productImageSection.addEventListener('click', handleClickOnAProduct);
-function handleClickOnAProduct(event){//delaring itself. The parameter
+function handleClickOnAProduct(event){
   if(event.target.tagName === 'IMG'){
     totalClicks++;
     var targetSrc = event.target.getAttribute('src');
@@ -64,27 +64,16 @@ function handleClickOnAProduct(event){//delaring itself. The parameter
   }
 
 }
-
 //============RENDER IMAGES==========================
-
-//1. make sure no item is displayed in the next two cyles
-
-
 //Tia helped me with this part
-var randoIndex = [];//set empty array to collect indexes
-// while(firstRandom === secondRandom || firstRandom === thirdRandom || secondRandom === thirdRandom)//makes sure that no images are the same as the other two
-
-
-
-
+var randoIndex = [];
 
 function rerenderRandoImages(){
-  // console.log(randoIndex);
   var firstRandom = pickRando(0, productCollection.length);
   var secondRandom = pickRando(0, productCollection.length);
   var thirdRandom = pickRando(0, productCollection.length);
 
-  while(secondRandom === firstRandom || secondRandom === thirdRandom || firstRandom === thirdRandom){
+  while(secondRandom === firstRandom || secondRandom === thirdRandom || secondRandom === thirdRandom){
     firstRandom = pickRando(0, productCollection.length);
     secondRandom = pickRando(0, productCollection.length);
     thirdRandom = pickRando(0, productCollection.length);
@@ -99,6 +88,7 @@ function rerenderRandoImages(){
     thirdRandom = pickRando(0, productCollection.length);
   }
   randoIndex = [firstRandom, secondRandom, thirdRandom];
+
   //==============RENDER IN LIST=======================
   var leftImage = document.getElementById('left-image');
   var leftText = document.getElementById('left-text');

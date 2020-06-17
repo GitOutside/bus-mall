@@ -9,6 +9,8 @@ This website is designed to track popularity of products for the startup 'Bus-Ma
  ## Collaborators
  - Chandler Puckett
  - Skyler Burger
+ - Courtney Hans
+ - Tia Low
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
