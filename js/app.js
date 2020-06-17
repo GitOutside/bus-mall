@@ -73,7 +73,7 @@ function rerenderRandoImages(){
   var secondRandom = pickRando(0, productCollection.length);
   var thirdRandom = pickRando(0, productCollection.length);
 
-  while(secondRandom === firstRandom || secondRandom === thirdRandom || secondRandom === thirdRandom){
+  while(secondRandom === firstRandom || secondRandom === thirdRandom || firstRandom === thirdRandom){
     firstRandom = pickRando(0, productCollection.length);
     secondRandom = pickRando(0, productCollection.length);
     thirdRandom = pickRando(0, productCollection.length);
