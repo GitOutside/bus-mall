@@ -41,7 +41,7 @@ var productsFromStorage = JSON.parse(stringyProductsStored);
 console.log('products from local storage', stringyProductsStored);
 
 if(productsFromStorage){
-  productCollection = productsFromStorage;
+  Product.productCollection = productsFromStorage;
 }
 
 //==============EVENT LISTENER======================
@@ -60,13 +60,12 @@ function handleClickOnAProduct(event){
     if(totalClicks === maxClicks){
       productImageSection.removeEventListener('click', handleClickOnAProduct);
 
-      renderChart()
+      renderChart();
 
       //Put products into local storage. After max clicks
-      var stringyProducts = JSON.stringify(productCollection);
+      var stringyProducts = JSON.stringify(Product.productCollection);
       //console.log('stringy array', stringyProducts);
       localStorage.setItem('storedProducts', stringyProducts);
- master
       var putInList = document.getElementById('data');
       for(i =0; i < Product.productCollection.length; i++){
         var listItem = document.createElement('li');
@@ -166,7 +165,21 @@ function renderChart(){
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -174,7 +187,21 @@ function renderChart(){
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
         ],
         borderWidth: 1
       }]
