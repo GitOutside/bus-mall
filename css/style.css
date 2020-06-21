@@ -2,17 +2,25 @@
 
 
 h1 {
-  width: 300px;
+  width: 100%;
   font-size: 32px;
   margin: 30px auto;
-}
-h2 {
-  border: solid red 2px;
-  font-size: 25px;
   text-align: center;
 }
+h2 {
+  font-size: 25px;
+  float: right;
+  text-align: right;
+  margin-right: 100px;
+}
+#product-images{
+  width: 70%;
+  float: right;
+}
+#right-image{
+  margin-right: 20px;
+}
  figure {
-   border: solid red 2px;
   width: 25%;
   margin: 20px;
 }
@@ -24,9 +32,9 @@ section:first-of-type {
 position: relative;
 overflow: hidden;
 }
-section:first-of-type > * {
+/* section:first-of-type > * {
   float: left;
-}
+} */
 section:first-of-type > p{
   font-size: 20px;
   margin: 0 20px;
@@ -35,18 +43,30 @@ section:first-of-type > p{
   right: 67%;
   transform: translateY(-50%);
 }
-p:nth-of-type(2n){
+#pOne {
 font-size: 20px;
 margin: 0 20px;
 position: absolute;
 top: 45%;
-right: 30%;
+right: 68%;
+transform: translateY(-60%);
+}
+#pTwo {
+  font-size: 20px;
+margin: 0 20px;
+position: absolute;
+top: 45%;
+right: 33%;
 transform: translateY(-60%);
 }
 img {
   width: 100%;
 }
-
+#instructions {
+  clear:  right;
+  width: 70%;
+  float: right;
+}
 section:first-of-type :first-child{
   margin-right: 70px;
 }
@@ -63,5 +83,4 @@ li {
 }
 footer{
   height: 20px;
-  border: solid red 2px;
 }
